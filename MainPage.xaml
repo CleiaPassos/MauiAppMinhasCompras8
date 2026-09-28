@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras8.MainPage"
+             Title="Minhas Compras">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label
+                Text="Minhas Compras"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <!-- Pesquisa por nome do produto -->
+            <SearchBar
+                x:Name="SearchBarProdutos"
+                Placeholder="Pesquisar produto..."
+                TextChanged="OnSearchBarTextChanged" />
+
+            <!-- Filtro por categoria -->
+            <Picker
+                x:Name="FiltroCategoriaPicker"
+                Title="Filtrar por categoria"
+                SelectedIndexChanged="OnFiltroCategoriaChanged">
+
+                <Picker.Items>
+                    <x:String>Todas</x:String>
+                    <x:String>Alimentos</x:String>
+                    <x:String>Higiene</x:String>
+                    <x:String>Limpeza</x:String>
+                </Picker.Items>
+
+            </Picker>
+
+            <!-- Cadastro do produto -->
+            <Entry
+                x:Name="DescricaoEntry"
+                Placeholder="Descrição do produto" />
+
+            <Entry
+                x:Name="QuantidadeEntry"
+                Placeholder="Quantidade"
+                Keyboard="Numeric" />
+
+            <Entry
+                x:Name="PrecoEntry"
+                Placeholder="Preço"
+                Keyboard="Numeric" />
+
+            <Picker
+                x:Name="CategoriaPicker"
+                Title="Selecione uma categoria">
+
+                <Picker.Items>
+                    <x:String>Alimentos</x:String>
+                    <x:String>Higiene</x:String>
+                    <x:String>Limpeza</x:String>
+                </Picker.Items>
+
+            </Picker>
+
+            <Button
+                Text="Adicionar produto"
+                Clicked="OnAdicionarProdutoClicked" />
+
+            <!-- Acesso ao relatório -->
+            <Button
+                Text="📊 Relatório de Compras por Categoria"
+                Clicked="OnRelatorioClicked" />
+
+            <Label
+                Text="Produtos cadastrados"
+                FontSize="20"
+                FontAttributes="Bold"
+                Margin="0,10,0,0" />
+
+            <!-- Lista de produtos -->
+            <CollectionView
+                x:Name="ProdutosCollectionView">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Padding="10">
+
+                            <VerticalStackLayout>
+
+                                <Label
+                                    Text="{Binding Descricao}"
+                                    FontAttributes="Bold"
+                                    FontSize="18" />
+
+                                <Label
+                                    Text="{Binding Quantidade, StringFormat='Quantidade: {0}'}" />
+
+                                <Label
+                                    Text="{Binding Preco, StringFormat='Preço: R$ {0:F2}'}" />
+
+                                <Label
+                                    Text="{Binding Categoria, StringFormat='Categoria: {0}'}" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
